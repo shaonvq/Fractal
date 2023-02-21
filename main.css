@@ -1,0 +1,18 @@
+/* Part 4 of 5: Adding CSS styles */
+#fractal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: white;
+}
+
+svg {
+  transition: stroke-width 0.5s;
+  animation: sway1 25s infinite;
+  transform-origin: 50% 100% 0;
+}
+@keyframes sway1 {
+    0%, 100%{ transform: rotate(-3deg);}
+    50%{ transform: rotate(3deg); }
+}
