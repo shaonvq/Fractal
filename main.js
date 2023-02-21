@@ -4,8 +4,8 @@ function degToRad(degrees) {
   return -(degrees * Math.PI / 180);
 }
 
-	var leftoffset = 6; // initial value
-	var rightoffset = 9; // initial value
+	var leftoffset = 10; // initial value
+	var rightoffset = 10; // initial value
 	var leftslider = document.getElementById("leftSlider");
 	var rightslider = document.getElementById("rightSlider");
 	leftslider.oninput = function() {
