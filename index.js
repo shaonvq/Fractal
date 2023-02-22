@@ -106,8 +106,8 @@ function renderWeb(maxSpokes) {
 		line.setAttribute("stroke-width",1  );
 		line.setAttribute("stroke", "black");
 		svg.appendChild(line);
-		line.style.strokeDasharray = Math.pow(Math.abs(x2-x1),1) + Math.pow(Math.abs(y2-y1),1);
-		line.style.strokeDashoffset = Math.pow(Math.abs(x2-x1),1) + Math.pow(Math.abs(y2-y1),1);
+		line.style.strokeDasharray = Math.abs(x2-x1) + Math.abs(y2-y1);
+		line.style.strokeDashoffset = Math.abs(x2-x1) + Math.abs(y2-y1);
 		line.getBoundingClientRect();
 		line.style.transition = `stroke-dashoffset ${1.5/maxSpokes}s ease-in-out`;
 		line.setAttribute("x2", x2);
