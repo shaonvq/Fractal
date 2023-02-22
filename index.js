@@ -79,43 +79,44 @@ function renderWeb(maxSpokes) {
 		var depth = 1;
 		const spiralMargin = 500/maxSpirals;
 		for (let i = 0; i < maxSpirals; i++) {
-			
-
-			await createSpiralpart(x1,y1,degrees,maxSpokes,length,depth);
+			await new Promise(resolve => {
+			  createSpiralpart(x1,y1,degrees,maxSpokes,length,depth,resolve);
+			});
 			y1 = y1 + spiralMargin;
 			length = length - spiralMargin;
 		}
 	}
 	
-	function createSpiralpart(x1,y1,degrees,maxSpokes,length,depth){
+	function createSpiralpart(x1,y1,degrees,maxSpokes,length,depth,resolve){
 
-		if(depth > maxSpokes){
+			if(depth > maxSpokes){
+				resolve();
+				return;
+			}
+			var newdegrees = degrees - 360 / maxSpokes ;
+
 			
-			return;
-		}
-		var newdegrees = degrees - 360 / maxSpokes ;
+			const x2 = 500 + length * Math.cos(degToRad(newdegrees));
+			const y2 = 500 + length * Math.sin(degToRad(newdegrees));
+			
+			const line = document.createElementNS("http://www.w3.org/2000/svg", "line")
 
+			line.setAttribute("x1", x1);
+			line.setAttribute("y1", y1);
+			line.setAttribute("stroke-width",1  );
+			line.setAttribute("stroke", "black");
+			svg.appendChild(line);
+			line.style.strokeDasharray = Math.abs(x2-x1) + Math.abs(y2-y1);
+			line.style.strokeDashoffset = Math.abs(x2-x1) + Math.abs(y2-y1);
+			line.getBoundingClientRect();
+			line.style.transition = `stroke-dashoffset ${1/(maxSpirals*maxSpokes)}s ease-in-out`;
+			line.setAttribute("x2", x2);
+			line.setAttribute("y2", y2);
+			line.style.strokeDashoffset = 0;
+			line.addEventListener("transitionend", () => {
+				createSpiralpart(x2,y2,newdegrees,maxSpokes,length,depth+1,resolve);
+			});
 		
-		const x2 = 500 + length * Math.cos(degToRad(newdegrees));
-		const y2 = 500 + length * Math.sin(degToRad(newdegrees));
-		
-		const line = document.createElementNS("http://www.w3.org/2000/svg", "line")
-
-		line.setAttribute("x1", x1);
-		line.setAttribute("y1", y1);
-		line.setAttribute("stroke-width",1  );
-		line.setAttribute("stroke", "black");
-		svg.appendChild(line);
-		line.style.strokeDasharray = Math.abs(x2-x1) + Math.abs(y2-y1);
-		line.style.strokeDashoffset = Math.abs(x2-x1) + Math.abs(y2-y1);
-		line.getBoundingClientRect();
-		line.style.transition = `stroke-dashoffset ${1.5/maxSpokes}s ease-in-out`;
-		line.setAttribute("x2", x2);
-		line.setAttribute("y2", y2);
-		line.style.strokeDashoffset = 0;
-		line.addEventListener("transitionend", () => {
-			createSpiralpart(x2,y2,newdegrees,maxSpokes,length,depth+1);
-		});
 
 		
 		
