@@ -1,5 +1,10 @@
 // Part 1 of 5: Setting up the SVG
 
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('.menu');
+const cross = document.querySelector('.cross');
+cross.classList.toggle('is-active');
+
 function degToRad(degrees) {
   return -(degrees * Math.PI / 180);
 }
@@ -137,4 +142,20 @@ function removeSVGs() {
 button.addEventListener("click", () => {removeSVGs();renderFractal();});
 
 // Add the button to the body of the document
-document.body.prepend(button);
+menu.prepend(button);
+
+
+
+hamburger.addEventListener('click', function() {
+  hamburger.classList.toggle('is-active');
+  cross.classList.toggle('is-active');
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+
+});
+
+cross.addEventListener('click', function() {
+  hamburger.classList.toggle('is-active');
+  cross.classList.toggle('is-active');
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+
+});
