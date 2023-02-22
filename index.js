@@ -40,7 +40,7 @@ function renderWeb(maxSpokes) {
 			line.style.strokeDasharray = length;
 			line.style.strokeDashoffset = length;
 			line.getBoundingClientRect();
-			line.style.transition = `stroke-dashoffset ${2/maxSpokes}s ease-in-out`;
+			line.style.transition = `stroke-dashoffset ${1.5/maxSpokes}s ease-in-out`;
 			line.setAttribute("x2", x2);
 			line.setAttribute("y2", y2);
 			line.style.strokeDashoffset = 0;
@@ -80,8 +80,7 @@ function renderWeb(maxSpokes) {
 		const spiralMargin = 500/maxSpirals;
 		for (let i = 0; i < maxSpirals; i++) {
 			
-			console.log("y1: ",length);
-			console.log("y1: ",spiralMargin);
+
 			await createSpiralpart(x1,y1,degrees,maxSpokes,length,depth);
 			y1 = y1 + spiralMargin;
 			length = length - spiralMargin;
@@ -91,7 +90,7 @@ function renderWeb(maxSpokes) {
 	function createSpiralpart(x1,y1,degrees,maxSpokes,length,depth){
 
 		if(depth > maxSpokes){
-			console.log("returning");
+			
 			return;
 		}
 		var newdegrees = degrees - 360 / maxSpokes ;
@@ -99,7 +98,7 @@ function renderWeb(maxSpokes) {
 		
 		const x2 = 500 + length * Math.cos(degToRad(newdegrees));
 		const y2 = 500 + length * Math.sin(degToRad(newdegrees));
-
+		
 		const line = document.createElementNS("http://www.w3.org/2000/svg", "line")
 
 		line.setAttribute("x1", x1);
@@ -107,10 +106,10 @@ function renderWeb(maxSpokes) {
 		line.setAttribute("stroke-width",1  );
 		line.setAttribute("stroke", "black");
 		svg.appendChild(line);
-		line.style.strokeDasharray = length;
-		line.style.strokeDashoffset = length;
+		line.style.strokeDasharray = Math.pow(Math.abs(x2-x1),1) + Math.pow(Math.abs(y2-y1),1);
+		line.style.strokeDashoffset = Math.pow(Math.abs(x2-x1),1) + Math.pow(Math.abs(y2-y1),1);
 		line.getBoundingClientRect();
-		line.style.transition = `stroke-dashoffset ${2/maxSpokes}s ease-in-out`;
+		line.style.transition = `stroke-dashoffset ${1.5/maxSpokes}s ease-in-out`;
 		line.setAttribute("x2", x2);
 		line.setAttribute("y2", y2);
 		line.style.strokeDashoffset = 0;
