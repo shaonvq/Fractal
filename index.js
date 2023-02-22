@@ -35,7 +35,7 @@ function renderWeb(maxSpokes) {
 			line.setAttribute("x1", 500);
 			line.setAttribute("y1", 500);
 			line.setAttribute("stroke-width",1  );
-			line.setAttribute("stroke", "black");
+			line.setAttribute("stroke", "white");
 			svg.appendChild(line);
 			line.style.strokeDasharray = length;
 			line.style.strokeDashoffset = length;
@@ -104,7 +104,7 @@ function renderWeb(maxSpokes) {
 			line.setAttribute("x1", x1);
 			line.setAttribute("y1", y1);
 			line.setAttribute("stroke-width",1  );
-			line.setAttribute("stroke", "black");
+			line.setAttribute("stroke", "white");
 			svg.appendChild(line);
 			line.style.strokeDasharray = Math.abs(x2-x1) + Math.abs(y2-y1);
 			line.style.strokeDashoffset = Math.abs(x2-x1) + Math.abs(y2-y1);
