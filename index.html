@@ -1,18 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Web</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Fractal SVG</title>
+    <link rel="stylesheet" href="main.css">
   </head>
-  <body>
-	<p>The number of spokes is controlled by the left slider, while the number of spirals is controlled by the right slider.</p>
-	<input type="range" min="3" max="100" value="6" class="slider" id="Slider">
-	<input type="range" min="1" max="100" value="6" class="slider" id="spiralSlider">
-	<div id="webContainer"></div>
-	<script src="index.js"></script>
-  </body>
   
+  <body>
+
+
+
+
+	<button class="hamburger">
+		<span class="hamburger__box">
+			<span class="hamburger__inner"></span>
+			<span class="hamburger__inner"></span>
+			<span class="hamburger__inner"></span>
+		</span>
+			<div class="cross">
+		<span class="leftcross"></span>
+		<span class="rightcross"></span>
+	</div>
+	</button>
+	<button class="menu">
+		<p>To modify the angle of the left and right branches, adjust the sliders provided.</p>
+		<input type="range" min="2" max="20" value="6" class="slider" id="leftSlider">
+		<input type="range" min="2" max="20" value="9" class="slider" id="rightSlider">
+
+	</button>
+
+	<audio autoplay loop>
+		<source src="music.mp3" type="audio/mpeg" style="display:none;">
+	</audio>
+
+    <div id="fractal-container"></div>
+    <script src="main.js"></script>
+  </body>
 </html>
